@@ -1,0 +1,30 @@
+
+extends layout
+
+block content
+  //- show the form for adding in a new book
+  h1 New Book
+
+  //- show validation errors if the form has any missing information
+  if errors
+    h2 Error
+    ul
+      each error in errors
+        li= error.message
+
+  //- send the book information to my create book route
+  form(action='/books/new', method='post')
+    label(for='title') Title
+    input(type='text', id='title', name='title')
+
+    label(for='author') Author
+    input(type='text', id='author', name='author')
+
+    label(for='genre') Genre
+    input(type='text', id='genre', name='genre')
+
+    label(for='year') Year
+    input(type='text', id='year', name='year')
+
+    button(type='submit') Create Book
+    a(href='/books') Cancel

@@ -1,0 +1,28 @@
+
+extends layout
+
+block content
+  //- show books saved in my library
+  h1 Books
+
+  //- add link so that someone can create a new book
+  a(href='/books/new') Create New Book
+
+  //- create the table to organize the book information
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+
+    tbody
+      //- loop through the books and display each one in a row
+      each book in books
+        tr
+          td
+            a(href='/books/' + book.id)= book.title
+          td= book.author
+          td= book.genre
+          td= book.year
