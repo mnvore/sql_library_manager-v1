@@ -41,7 +41,7 @@ router.get('/:id', async (req, res, next) => {
     if (book) {
       res.render('update-book', { book });
     } else {
-      res.sendStatus(404);
+      next();
     }
   } catch (error) {
     next(error);
@@ -59,7 +59,7 @@ router.get('/:id', async (req, res, next) => {
        await book.update(req.body);
        res.redirect('/books');
      } else {
-       res.sendStatus(404);
+       next();
      }
    } catch (error) {
      if (error.name === 'SequelizeValidationError') {
@@ -80,7 +80,7 @@ router.get('/:id', async (req, res, next) => {
        await book.destroy();
        res.redirect('/books');
      } else {
-       res.sendStatus(404);
+       next();
      }
    } catch (error) {
      next(error);
